@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import './App.css';
-import {ThemeProvider} from "stled-components";
+import styled, {ThemeProvider} from "stled-components";
 import { lightTheme, darkTheme } from './Themes';
 
-const StyledApp = styled.div``;
+const StyledApp = styled.div`
+  color: ${(props) => props.theme.fontColor}; 
+`;
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -12,7 +14,9 @@ function App() {
   }
   return (
   <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+  <GlobalStyles />
       <StyledApp>hello</StyledApp>
+      <button onClick={() => themeToggler()}>change color</button>
   </ThemeProvider>
   )
 }
